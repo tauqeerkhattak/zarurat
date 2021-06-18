@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "420777068999",
+    "project_id": "zarurat-aa098",
+    "storage_bucket": "zarurat-aa098.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420777068999:android:81cda2efa54c57cf42b1e2",
+        "android_client_info": {
+          "package_name": "com.zarurat.org.zarurat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420777068999-2us69shcffcsq2pcgi6bq5tpdgnpmnaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoq-Bo9fNsPHdFKlpKDVb7-1FKFl9AYLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420777068999-2us69shcffcsq2pcgi6bq5tpdgnpmnaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
