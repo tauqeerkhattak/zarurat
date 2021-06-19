@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>420777068999-pr65jp2u1lp0ogued07tf0ddfeg5mvmf.apps.googleusercontent.com</string>
+	<string>826477552527-v4frbnhnnmunssdu8p7envh0heefk6g4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.420777068999-pr65jp2u1lp0ogued07tf0ddfeg5mvmf</string>
+	<string>com.googleusercontent.apps.826477552527-v4frbnhnnmunssdu8p7envh0heefk6g4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC-GwWsd0IlMx_FijxlKZ9j1StC0KQVOSU</string>
+	<string>AIzaSyBZE6MJx_czD3PCiv4jjdVuWVAFzQxzw-E</string>
 	<key>GCM_SENDER_ID</key>
-	<string>420777068999</string>
+	<string>826477552527</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.zarurat.org.zarurat</string>
 	<key>PROJECT_ID</key>
-	<string>zarurat-aa098</string>
+	<string>zarurat-business</string>
 	<key>STORAGE_BUCKET</key>
-	<string>zarurat-aa098.appspot.com</string>
+	<string>zarurat-business.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:420777068999:ios:94bae8f27c9d8a3242b1e2</string>
+	<string>1:826477552527:ios:0b07b40da6ee35e98ce1fa</string>
 </dict>
 </plist>

@@ -1,6 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zarurat/Models/custom_dropdown.dart';
+import 'package:select_dialog/select_dialog.dart';
 import 'package:zarurat/Models/search_bar.dart';
 
 import '../data.dart';
@@ -18,11 +19,12 @@ class _HomeState extends State<Home> {
   double counter = 0.0;
   TextEditingController searchController = TextEditingController();
   String selectedItem = 'Karachi';
-  List <DropdownMenuItem> cityDropdown = [
-    DropdownMenuItem(
-      value: 'Karachi',
-      child: Text('Karachi'),
-    ),
+  List <String> cities = [
+    'Karachi',
+    'Lahore',
+    'Islamabad',
+    'Sanghar',
+    'Hyderabad',
   ];
 
   @override
@@ -55,29 +57,108 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: (bottomVisible)?AppBar(
+        leading: Icon(
+          Icons.dehaze,
+        ),
+        backgroundColor: Data.primaryColor,
+        elevation: 0.0,
+        title: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Zarurat.com',
+                style: TextStyle(
+                  color: Data.secondaryColor,
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Text(
+                  'Here you will find ',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Data.secondaryColor,
+                  ),
+                ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      'excellency!',
+                      speed: Duration(milliseconds: 250),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    TyperAnimatedText(
+                      'reliability!',
+                      speed: Duration(milliseconds: 250),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    TyperAnimatedText(
+                      'productivity!',
+                      speed: Duration(milliseconds: 250),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ):null,
       body: SafeArea(
         child: Stack(
           children: [
             NestedScrollView(
               controller: _controller,
+              floatHeaderSlivers: true,
               headerSliverBuilder: (BuildContext context,bool isInnerBoxSelected) {
                 return <Widget>[
                   SliverAppBar(
                     backgroundColor: (bottomVisible)?Colors.transparent:Data.primaryColor,
                     floating: false,
                     pinned: true,
-                    expandedHeight: 220,
+                    expandedHeight: MediaQuery.of(context).size.height * 0.30,
+                    collapsedHeight: MediaQuery.of(context).size.height * 0.10,
                     flexibleSpace: FlexibleSpaceBar(
                       centerTitle: true,
-                      title: InkWell(
-                        onTap: () {
-                          // CustomDropdown(
-                          //   dropdownItems: cityDropdown,
-                          // );
-                        },
-                        child: SearchBar(
-                          hintTxt: 'Search for Homes',
-                          controller: searchController,
+                      title: FittedBox(
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10,right: 10),
+                            child: InkWell(
+                              onTap: () {
+                                print('city tapped!');
+                                SelectDialog.showModal(
+                                  context,
+                                  label: 'Please Select your City',
+                                  selectedValue: selectedItem,
+                                  items: cities,
+                                  onChange: (selected) {
+                                    setState(() {
+                                      selectedItem = selected.toString();
+                                    });
+                                  }
+                                );
+                              },
+                              child: IgnorePointer(
+                                child: SearchBar(
+                                  hintTxt: 'Search for Homes',
+                                  controller: searchController,
+                                  suffixText: selectedItem,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       background: Container(
