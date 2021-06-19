@@ -12,13 +12,14 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool appbarVisible = true;
   bool bottomVisible = true;
   ScrollController _controller = ScrollController();
   double counter = 0.0;
   TextEditingController searchController = TextEditingController();
   String selectedItem = 'Karachi';
+  TabController? _tabController;
   List <String> cities = [
     'Karachi',
     'Lahore',
@@ -29,8 +30,8 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    _tabController = TabController(length: 2, vsync: this,initialIndex: 0);
     _controller = ScrollController();
-
     _controller.addListener(() {
       counter = _controller.offset;
       if (_controller.offset > 23 && !_controller.position.outOfRange) {
@@ -38,9 +39,14 @@ class _HomeState extends State<Home> {
           bottomVisible = false;
         });
       }
-      if (_controller.offset > 50 && !_controller.position.outOfRange) {
+      if (_controller.offset > 70 && !_controller.position.outOfRange) {
         setState(() {
           appbarVisible = false;
+        });
+      }
+      if (_controller.offset <= 70 && !_controller.position.outOfRange) {
+        setState(() {
+          appbarVisible = true;
         });
       }
       if (_controller.offset <= 23 && !_controller.position.outOfRange) {
@@ -77,8 +83,7 @@ class _HomeState extends State<Home> {
                     expandedHeight: MediaQuery.of(context).size.height * 0.35,
                     collapsedHeight: MediaQuery.of(context).size.height * 0.10,
                     elevation: 8.0,
-                    leadingWidth: 30,
-                    title: (bottomVisible)?Column(
+                    title: (appbarVisible)?Column(
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
@@ -127,7 +132,7 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ):null,
-                    leading: (bottomVisible)?IconButton(
+                    leading: (appbarVisible)?IconButton(
                       icon: Icon(
                         Icons.dehaze,
                         color: Data.secondaryColor,
@@ -175,6 +180,68 @@ class _HomeState extends State<Home> {
                           color: Data.primaryColor,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(35),
+                          ),
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            width: 200,
+                            margin: EdgeInsets.only(left: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Data.secondaryColor,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Data.primaryColor.withOpacity(0.5),
+                              ),
+                              child: TabBar(
+                                controller: _tabController,
+                                unselectedLabelColor: Data.secondaryColor,
+                                labelColor: Data.primaryColor,
+                                indicatorWeight: 2,
+                                indicator: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40),
+                                  ),
+                                  color: Data.secondaryColor,
+                                ),
+                                automaticIndicatorColorAdjustment: true,
+                                tabs: [
+                                  Tab(
+                                    child: Container(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Buy',
+                                            style: TextStyle(
+                                              color: Data.primaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Tab(
+                                    child: Container(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Rent',
+                                            style: TextStyle(
+                                              color: Data.primaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
