@@ -270,14 +270,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                 ];
               },
-              body: ListView(
-                children: [
-                  Container(
-                    height: 500,
-                    color: Data.secondaryColor,
-                  ),
-                ],
-              ),
+              body: homeBody(),
             ),
           ],
         ),
@@ -285,12 +278,55 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget HomeBody () {
+  Widget homeBody () {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      child: ListView(
+      margin: EdgeInsets.only(top: 30,left: 15,right: 15,),
+      child: TabBarView(
+        controller: _tabController,
         children: [
-
+          Container(
+            decoration: BoxDecoration(
+              color: Data.secondaryColor,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                color: Data.textColor,
+                width: 1.5,
+              ),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15,top: 15,),
+                      child: Icon(
+                        Icons.home_work,
+                        color: Data.primaryColor,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 15,top: 15),
+                      child: Text(
+                        'Browse properties to buy!',
+                        style: TextStyle(
+                          color: Data.textColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Text(
+            'Body 2',
+            style: TextStyle(
+              color: Data.primaryColor,
+              fontSize: 40,
+            ),
+          ),
         ],
       ),
     );
